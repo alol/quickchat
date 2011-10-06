@@ -3,6 +3,13 @@ var app = express.createServer();
 
 var io = require('socket.io').listen(app);
 
+//configuration for socket.io -- there's no WebSockets on heroku, yet!
+
+io.configure(function () { 
+    io.set("transports", ["xhr-polling"]); 
+    io.set("polling duration", 10); 
+});
+
 // will contain the global chat history. Obviously will reset as the server is restarted.
 var history = [];
 
