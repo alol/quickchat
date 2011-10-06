@@ -18,8 +18,10 @@ io.sockets.on('connection', function (socket) {
    socket.on('message', function (data) {
      var d = new Date();
      var date = d.getDate() + "/" + (d.getMonth()+1) + "/" + d.getFullYear() + " " + d.getHours() + ":" + d.getMinutes()+ " ";
-     
-     var msg = {message: data.message, date: date};
+
+     var cleaned_message = data.message.replace('<','&lt;').replace('>','&gt;');
+
+     var msg = {message: cleaned_message, date: date};
      history.push(msg);
      
      io.sockets.emit('message', msg);
