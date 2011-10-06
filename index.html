@@ -25,7 +25,8 @@
         
         function addMessage(data) {
             var li = $("<li></li>").append($("<strong></strong>").text(data.date));
-            li.append(data.message);
+            var span = $("<span />").css("color", data.colour).text(data.message);
+            li.append(span);
             $("#messages").append(li);
         }
     </script>
