@@ -5,7 +5,8 @@ var io = require('socket.io').listen(app);
 
 var history = [];
 
-app.listen(3000);
+var port = process.env.PORT || 3000;
+app.listen(port);
 
 // route for a static file
 app.get('/', express.static(__dirname));
