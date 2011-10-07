@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title>Quick chat</title>
+    <script type="text/javascript" charset="utf-8" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            font-family: "Helvetica Neue", sans-serif;
+        }
+    </style>
+    <script>
+        var socket = io.connect();
+        socket.on('history', function(data) {
+            for(i = 0; i < data.history.length; i++){
+                addMessage(data.history[i]);
+            }
+        });
+        socket.on('message', function (data) {
+            addMessage(data);
+        });
+        $(document).ready(function(){
+            $("form").submit(function(e){
+                e.preventDefault();
+                e.stopPropagation();
+              
+                socket.emit('message',{'message': $("#message").val()});
+                $("#message").val("");
+            });
+        });
+        
+        function addMessage(data) {
+            var li = $("<li></li>").append($("<strong></strong>").text(data.date));
+            var span = $("<span />").css("color", data.colour).text(data.message);
+            li.append(span);
+            $("#messages").append(li);
+        }
+    </script>
+</head>
+<body>
+<ul id="messages">
+</ul>
+<form action="/" method="post" accept-charset="utf-8">
+    <p>
+        <input type="text" name="message" value="" id="message" placeholder="Type your message" />
+    </p>
+    <p><input type="submit" value="Send"></p>
+</form>
+</body>
+</html>
