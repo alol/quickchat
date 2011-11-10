@@ -72,7 +72,7 @@ var history = [{message: 'Welcome', date: get_date(), colour: '#000000'}];
 var chatters = [];
 
 app.use(express.static(__dirname + '/static'));
-console.log(__dirname + '/static');
+
 // pickup a port from heroku to serve on, or a sensible default of 3000 for local invocation
 var port = process.env.PORT || 3000;
 app.listen(port);
@@ -124,6 +124,6 @@ io.sockets.on('connection', function (socket) {
   // stuff happens when a client disconnects
   socket.on('disconnect', function(){
       // remove the client from the list of chatters
-    console.log('client disconnected');      
+      
   });
 });
