@@ -1,0 +1,35 @@
+body {
+    font-family: "Helvetica Neue", sans-serif;
+}
+div.chatbox {
+    width:600px;
+    height:500px;
+    border: inset 1px;
+    float:left;
+}
+input#message {
+    width:550px;
+    border-top:0;
+}
+input#submit {
+    width:50px;
+    background-color:#aaa;
+    border: 0;
+}
+ul#chatters {
+    float:left;
+}
+form p {
+    margin: 0;
+    padding: 0;
+}
+form {
+    width:610px;
+}
+form.user-details{
+    clear:left;
+}
+div#right{
+    float:left;
+    width:200px;
+}
